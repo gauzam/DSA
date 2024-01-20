@@ -21,7 +21,7 @@ class Solution {
             }
             k--;
         }
-        
+
         //if arr1 has exhausted, we put all the arr2 elements in nums1
         while(j>=0){
             nums1[k] = nums2[j];
