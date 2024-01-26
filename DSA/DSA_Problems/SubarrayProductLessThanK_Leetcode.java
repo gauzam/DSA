@@ -1,32 +1,35 @@
 class Solution {
     public int numSubarrayProductLessThanK(int[] nums, int k) {
 
-        //sliding window approach
-        int numsubarrays = 0;
+        int subarrays = 0;
 
-        int left = 0;
-        int right = 0;
+        //window start index
+        int i = 0;
+        //window end index
+        int j = 0;
 
-        int windowProduct = nums[0];
+        //current product of window
+        int product = 1;
 
-        while(left <= right && right < nums.length){
+        while(j < nums.length){
 
-            if(windowProduct >= k){
-                windowProduct = windowProduct/nums[left];
-                left++;
+            product = product * nums[j];
+
+            //while start index is <= end index and the product is >= to k
+            while(i <= j && product >= k){
+                product = product/nums[i];
+                i++;
             }
 
-            if(windowProduct < k){
-                numsubarrays = numsubarrays + (right - left + 1);
-                right++;
-                if(right < nums.length){
-                    windowProduct = windowProduct * nums[right];
-                }
+            if(product < k){
+                //found a subarray that has product < k
+                //add all its subarrays
+                subarrays = subarrays + (j-i+1);
             }
 
+            j++;
         }
 
-
-        return numsubarrays;
+        return subarrays;
     }
 }
