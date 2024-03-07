@@ -7,6 +7,8 @@ class Solution {
 
         for(int i = 0; i < s.length(); i++){
 
+            //whenever the opening bracket is outermost, stack will be empty
+            //and we wont add the bracket to the answer string
             if(s.charAt(i) == '('){
                 if(stack.size() != 0){
                     ans.append(s.charAt(i));
@@ -15,11 +17,15 @@ class Solution {
             }
             else{
                 stack.pop();
+
+                //if stack was empty, means it was a closing bracket of outermost pair
+                //so we wont add the bracket to the answer string
                 if(stack.size() != 0){
                     ans.append(s.charAt(i));
                 }
             }
         }
+
 
         return ans.toString();
 
